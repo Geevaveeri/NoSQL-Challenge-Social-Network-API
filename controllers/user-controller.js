@@ -5,15 +5,11 @@ const userController = {
 	// /api/users
 	getAllUsers(req, res) {
 		User.find({})
-			.populate({
-				path: "thoughts",
-				select: "-__v",
-			})
 			.select("-__v")
 			.then(dbUserData => res.json(dbUserData))
 			.catch(err => {
 				console.log(err);
-				res.sendStatus(400);
+				res.json(err);
 			});
 	},
 
@@ -29,7 +25,7 @@ const userController = {
 			.then(dbUserData => res.json(dbUserData))
 			.catch(err => {
 				console.log(err);
-				res.sendStatus(400);
+				res.json(err);
 			});
 	},
 
